@@ -1,10 +1,42 @@
-<google-map height="500px"
-            width="750px"
-            [center]="center"
-            [zoom]="zoom"
-            (mapClick)="moveMap($event)"
-            (mapMousemove)="move($event)">
-</google-map>
-
-<div>Latitude: {{display?.lat}}</div>
-<div>Longitude: {{display?.lng}}</div>
+<section class="layout">
+  <div
+    style="
+      height: 50vh;
+      width: 40vw;
+      border: 2px;
+      border-color: gray;
+      border-style: outset;
+    "
+  >
+    <input type="file" id="file" #fileInput (change)="onFileSelected($event)" />
+    <div>
+        <button (click)="ejemplo()"> Ejem CSV</button></div>
+    <div>
+    <div>
+      <button (click)="polygon()">Poligono</button>
+    </div>
+      <button [disabled]="vertices.lenght == 0" (click)="downloadCSV()">
+        CSV Poly
+      </button>
+    </div>
+  </div>
+  <div>
+    <google-map
+      height="50vh"
+      width="48vw"
+      [center]="center"
+      [zoom]="zoom"
+      (mapClick)="moveMap($event)"
+      (mapMousemove)="move($event)"
+    >
+      <map-polygon [paths]="vertices"></map-polygon>
+      <map-marker
+        *ngFor="let mu of massiveUpdatemarkers; let i = index"
+        [position]="mu"
+      >
+      </map-marker>
+    </google-map>
+    <div>Latitude: {{ display?.lat }}</div>
+    <div>Longitude: {{ display?.lng }}</div>
+  </div>
+</section>

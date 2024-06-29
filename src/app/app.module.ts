@@ -14,7 +14,7 @@ import { ConvexHullComponent } from './components/convex-hull/convex-hull.compon
   imports: [
     BrowserModule,
     AppRoutingModule,
-    GoogleMapsModule
+    GoogleMapsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
